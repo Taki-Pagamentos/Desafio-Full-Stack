@@ -1,0 +1,100 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Teatro Desafio</a>
+    </div>
+    <div class="pull-right">
+      <!-- <a class="navbar-brand" href="/login/" >Entrar</a> -->
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      
+    </div>
+  </div>
+</nav>
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Adicionar espetaculo</h4>
+          </div>
+          <div class="modal-body">
+            <form action="/action_page.php">
+              <div class="form-group">
+                <label for="email">Titulo:</label>
+                <input type="text" class="form-control" id="email" [(ngModel)]="titulo" [ngModelOptions]="{standalone:true}">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Descrição:</label>
+                <input type="text" class="form-control" id="pwd" [(ngModel)]="descricao" [ngModelOptions]="{standalone:true}">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Total de Poltronas:</label>
+                <input type="number" class="form-control" id="pwd" [(ngModel)]="total_de_poltronas" [ngModelOptions]="{standalone:true}">
+              </div>
+              <button type="submit" (click)=criarEspetaculo() class="btn btn-primary">Salvar</button>
+            </form> 
+
+          </div>
+          <div class="modal-footer">
+            <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+<div class="row">
+    <div class="col-lg-3">
+
+    </div>
+    <div class="col-lg-6">
+      <h1> Listagem de Espetaculos </h1>
+      <button class="btn btn-primary pull-right" value="Editar" data-toggle="modal" data-target="#myModal" (click)="isLogged()">Adicionar Espetaculo</button>
+      <!-- <div class="input-group">
+        <input type="text" value="" class="form-control" placeholder="Pesquisar Espetaculos...">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">Pesquisar</button>
+        </span>
+      </div> -->
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+      <br>
+      <div *ngFor="let esp of espetaculos">
+        <div class="col-sm-3 col-md-3">
+          <div class="thumbnail">
+            <!-- <img src="..." alt="..."> -->
+            <div class="caption">
+              <h3>{{ esp.titulo }}</h3>
+              <p>{{ esp.descricao }}</p>
+              <br><br>
+              <p>Poltronas reservadas: {{esp.total_reservados}}</p>
+              <p>Poltronas disponiveis: {{esp.total_livres}}</p>
+              <p>
+                <a href="#" class="btn btn-primary" role="button"
+                  [routerLink]="['poltronas/']" [queryParams]="{ espetaculo: esp.id }"
+                >Fazer Reserva</a>
+              </p>
+              <p>
+                <a class="btn btn-default" role="button"
+                [routerLink]="['espetaculo-detail', esp.id]"> Ver detalhes</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
